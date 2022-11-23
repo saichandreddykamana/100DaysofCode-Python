@@ -37,6 +37,7 @@ def draw_hirst_painting(size=5):
     for i in range(size):
         draw_line(size)
         turtle_reset(i + 1)
+    t.hideturtle()
 
 
 draw_hirst_painting(10)
