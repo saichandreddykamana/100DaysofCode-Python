@@ -37,6 +37,7 @@ class Ball(Turtle):
         self.penup()
         self.color('blue')
         self.shape('circle')
+        self.ball_speed = 0.04
         self.shapesize(stretch_wid=1, stretch_len=1)
         self.x_cor = self.y_cor = BALL_MOVE_DISTANCE
 
@@ -48,6 +49,7 @@ class Ball(Turtle):
 
     def bounce_x(self):
         self.x_cor *= -1
+        self.ball_speed *= 0.9
 
 
 class Paddle(Turtle):
@@ -94,7 +96,7 @@ game_screen.onkey(key='s', fun=left_paddle.move_down)
 
 game = True
 while game:
-    time.sleep(0.04)
+    time.sleep(ball.ball_speed)
     game_screen.update()
     ball.move()
 
@@ -107,7 +109,6 @@ while game:
             ball.distance(left_paddle) < 50 and ball.xcor() < -340:
         scoreboard.increase_score()
         ball.bounce_x()
-        
     if ball.xcor() > abs(BALL_EDGE) or ball.xcor() < BALL_EDGE:
         scoreboard.game_over()
         game = False
